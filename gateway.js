@@ -1053,6 +1053,7 @@ function httpEndPointHandler(req, res) {
   var queryString = url.parse(req.url, true).query; //parse query string
   var ip = req.headers['x-forwarded-for'] /*|| req.connection.remoteAddress*/; //appended by nginx proxy
   var id = queryString.id || ip;
+  var cmd = queryString.cmd;  // store custom command variable
 
   if (isValidNodeId(id))
   {
@@ -1148,7 +1149,21 @@ function httpEndPointHandler(req, res) {
       });
 
       res.writeHead(200, {'Content-Type': 'application/json'});
-      res.write(JSON.stringify({status:'success', message: 'SUCCESS!', matchedMetrics:matchedMetrics}));
+      if ( cmd && cmd.substring(0,3) == 'BTN' ) { //cmd value matchs BTNx:y commands
+        sendMessageToNode({ nodeId: id, action: cmd }) //send cmd value to the node so it can act on it
+        res.write(JSON.stringify({
+          status: 'success',
+          message: 'Command sent to nodeId ' + id,
+          command: cmd,
+          matchedMetrics: matchedMetrics
+        }));
+      } else {
+        res.write(JSON.stringify({
+          status: 'success',
+          message: 'SUCCESS!',
+          matchedMetrics: matchedMetrics
+        }));
+      }
       res.end();
     });
   }
