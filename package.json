@@ -1,27 +1,32 @@
 {
   "name": "RaspberryPi-Gateway",
-  "version": "8.8.0",
+  "version": "9.1.0",
   "description": "Moteino IoT Gateway",
   "main": "gateway.js",
-  "repository": "https://github.com/LowPowerLab/RaspberryPi-Gateway.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LowPowerLab/RaspberryPi-Gateway.git"
+  },
   "author": "Felix Rusu (https://github.com/LowPowerLab)",
   "homepage": "http://lowpowerlab.com/gateway",
+  "license" : "CC-BY-NC-SA-4.0",
   "bugs": {
-    "url": "https://github.com/LowPowerLab/RaspberryPi-Gateway/issues"
+    "url": "https://github.com/LowPowerLab/RaspberryPi-Gateway/issues",
+    "email": "bugs@lowpowerlab.com"
   },
-  "license": "SEE LICENSE FILE",
   "contributors": "Felix Rusu (https://github.com/LowPowerLab)",
   "dependencies": {
-    "serialport": "~2.0",
-    "socket.io": "~1.5",
+    "colors": "~1.4",
+    "console-stamp": "^0.2.7",
+    "json5": "~2.1.0",
+    "merge": "^1.2.1",
+    "nconf": "~0.10.0",
     "nedb": "~1.8",
-    "json5": "~0.5.0",
-    "nconf": "~0.8.2",
-    "nodemailer": "~1.10",
-    "console-stamp": "~0.2.4",
-    "colors": "~1.1.2",
-    "request": "~2.78",
-    "merge": "~1.2.0"
+    "nodemailer": "^6.4.6",
+    "serialport": "~7.0.2",
+    "socket.io": "~2.3.0",
+    "speedtest-net": "^1.6.2",
+    "suncalc": "~1.8"
   },
   "scripts": {
     "preinstall": "",
